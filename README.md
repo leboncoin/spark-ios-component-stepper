@@ -1,17 +1,17 @@
 
-# ___COMPONENT_NAME___
+# Stepper
 
 TODO: 
 
 ## Specifications
 
-The ___component_name___ specifications on Zeroheight is [here](TODO:).
+The stepper specifications on Zeroheight is [here](TODO:).
 
-![Figma anatomy](https://github.com/adevinta/___REPOSITORY_NAME___/blob/main/.github/assets/anatomy.png)
+![Figma anatomy](https://github.com/adevinta/spark-ios-component-stepper/blob/main/.github/assets/anatomy.png)
 
 ## Usage
 
-___COMPONENT_NAME___ is available both in UIKit and SwiftUI.
+Stepper is available both in UIKit and SwiftUI.
 
 ### UIKit
 
@@ -32,7 +32,7 @@ ___COMPONENT_NAME___ is available both in UIKit and SwiftUI.
 #### Initialization
 
 ```swift
-let ___component_name___ = ___COMPONENT_NAME___UIView(
+let stepper = StepperUIView(
     TODO: TODO
 )
 ```
@@ -47,7 +47,7 @@ TODO
 #### Initialization
 
 ```swift
-let ___component_name___ = ___COMPONENT_NAME___View(
+let stepper = StepperView(
     TODO: TODO
 )
 ```

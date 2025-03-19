@@ -1,13 +1,12 @@
-
 # Stepper
 
-TODO: 
+TODO:
 
 ## Specifications
 
 The stepper specifications on Zeroheight is [here](TODO:).
 
-![Figma anatomy](https://github.com/adevinta/spark-ios-component-stepper/blob/main/.github/assets/anatomy.png)
+![Figma anatomy](https://github.com/leboncoin/spark-ios-component-stepper/blob/main/.github/assets/anatomy.png)
 
 ## Usage
 
@@ -15,19 +14,17 @@ Stepper is available both in UIKit and SwiftUI.
 
 ### UIKit
 
-### Usage
-
 #### Subviews
 
-* `TODO`: TODO.
+- `TODO`: TODO.
 
 #### Properties
 
-* `TODO`: TODO.
+- `TODO`: TODO.
 
 #### Published Properties
 
-* `TODO`: TODO.
+- `TODO`: TODO.
 
 #### Initialization
 
@@ -40,7 +37,6 @@ let stepper = StepperUIView(
 #### Getter / Setter
 
 TODO
-
 
 ### SwiftUI
 
@@ -56,13 +52,12 @@ let stepper = StepperView(
 
 TODO
 
-
 ## License
 
 ```
 MIT License
 
-Copyright (c) 2024 Adevinta
+Copyright (c) 2024 Leboncoin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

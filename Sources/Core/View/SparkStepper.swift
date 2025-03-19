@@ -39,7 +39,7 @@ import SparkTheming
 /// }
 /// ```
 ///
-/// ![Stepper rendering.](https://github.com/leboncoin/spark-ios-component-stepper/raw/main/Documentation/component.jpeg)
+/// ![Stepper rendering.](component.png)
 ///
 public struct SparkStepper<V>: View where V: Strideable {
 
@@ -99,7 +99,7 @@ public struct SparkStepper<V>: View where V: Strideable {
     /// }
     /// ```
     ///
-    /// ![Stepper rendering.](https://github.com/leboncoin/spark-ios-component-stepper/raw/main/Documentation/component.jpeg)
+    /// ![Stepper rendering.](component.png)
     ///
     /// - Parameters:
     ///   - theme: The spark theme of the stepper.
@@ -155,7 +155,7 @@ public struct SparkStepper<V>: View where V: Strideable {
     /// }
     /// ```
     ///
-    /// ![Stepper rendering.](https://github.com/leboncoin/spark-ios-component-stepper/raw/main/Documentation/component_with_format.jpeg)
+    /// ![Stepper rendering.](component_with_format.png)
     ///
     /// - Parameters:
     ///   - theme: The spark theme of the stepper.

@@ -1,6 +1,10 @@
 # Stepper
 
-TODO:
+**Spark** is the [Leboncoin](https://www.leboncoin.fr/)'s _Design System_.
+
+The repository here contains only the **iOS Stepper** for _SwiftUI_ and _UIKit_.
+
+You can also see all of our Spark iOS repositories on [Github](https://github.com/orgs/leboncoin/repositories?q=spark-ios+sort%3Aname-asc).
 
 ## Specifications
 
@@ -8,49 +12,57 @@ The stepper specifications on Zeroheight is [here](TODO:).
 
 ![Figma anatomy](https://github.com/leboncoin/spark-ios-component-stepper/blob/main/.github/assets/anatomy.png)
 
-## Usage
+## Technical Documentation
 
-Stepper is available both in UIKit and SwiftUI.
+You are a developer ? A technical documentation in _DocC_ is available [here](https://leboncoin.github.io/spark-ios-component-stepper/).
 
-### UIKit
+### Swift Package Manager
 
-#### Subviews
+_Note: Instructions below are for using **SPM** without the Xcode UI. It's the easiest to go to your Project Settings -> Swift Packages and add SparkStepper from there._
 
-- `TODO`: TODO.
-
-#### Properties
-
-- `TODO`: TODO.
-
-#### Published Properties
-
-- `TODO`: TODO.
-
-#### Initialization
+To integrate using Apple's Swift package manager, without Xcode integration, add the following as a dependency to your `Package.swift`:
 
 ```swift
-let stepper = StepperUIView(
-    TODO: TODO
-)
+.package(url: "https://github.com/leboncoin/spark-ios-component-stepper.git", .upToNextMajor(from: "1.0.0"))
 ```
 
-#### Getter / Setter
+and then specify `SparkStepper` as a dependency of the Target in which you wish to use the SparkStepper.
 
-TODO
-
-### SwiftUI
-
-#### Initialization
+Here's an example `Package.swift`:
 
 ```swift
-let stepper = StepperView(
-    TODO: TODO
+// swift-tools-version:5.9
+import PackageDescription
+
+let package = Package(
+    name: "MyPackage",
+    platforms: [
+        .iOS(.v16)
+    ],
+    products: [
+        .library(
+            name: "MyPackage",
+            targets: ["MyPackage"]),
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/leboncoin/spark-ios-component-stepper.git",
+            .upToNextMajor(from: "1.0.0")
+        )
+    ],
+    targets: [
+        .target(
+            name: "MyPackage",
+            dependencies: [
+                .product(
+                    name: "SparkStepper",
+                    package: "spark-ios-component-stepper"
+                ),
+            ]
+        )
+    ]
 )
 ```
-
-#### Modifier
-
-TODO
 
 ## License
 

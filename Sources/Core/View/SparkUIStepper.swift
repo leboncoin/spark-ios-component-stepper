@@ -45,7 +45,7 @@ import Combine
 /// self.addSubview(stepper)
 /// ```
 ///
-/// ![Stepper rendering.](https://github.com/leboncoin/spark-ios-component-stepper/raw/main/Documentation/component.jpeg)
+/// ![Stepper rendering.](component.png)
 ///
 public final class SparkUIStepper: UIControl {
 
@@ -138,7 +138,7 @@ public final class SparkUIStepper: UIControl {
     }
 
     /// Value changes are sent to the publisher.
-    /// Alternative: use addAction(UIAction, for: .valueChanged).
+    /// Alternative: use *addAction(UIAction, for: .valueChanged)*.
     public var valuePublisher: some Publisher<Double, Never> {
         return self.valueSubject
     }
@@ -279,7 +279,7 @@ public final class SparkUIStepper: UIControl {
     /// self.addSubview(stepper)
     /// ```
     ///
-    /// ![Stepper rendering.](https://github.com/leboncoin/spark-ios-component-stepper/raw/main/Documentation/component.jpeg)
+    /// ![Stepper rendering.](component.png)
     ///
     /// - Parameters:
     ///   - theme: The spark theme of the stepper.

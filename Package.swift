@@ -8,7 +8,7 @@ let package = Package(
     name: "SparkStepper",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v16)
     ],
     products: [
         .library(

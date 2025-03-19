@@ -9,5 +9,9 @@ DerivedData/
 Package.resolved
 .swiftlint/
 
+# Github Actions
+.spmComponentDerivedData/
+generatedDocC/
+
 # SwiftLint Remote Config Cache
 .swiftlint/RemoteConfigCache

@@ -8,7 +8,7 @@ You can also see all of our Spark iOS repositories on [Github](https://github.co
 
 ## Specifications
 
-The stepper specifications on Zeroheight is [here](TODO:).
+The stepper specifications is visible on [Zeroheight](https://zeroheight.com/1186e1705/p/95f37c-stepper).
 
 ![Figma anatomy](https://github.com/leboncoin/spark-ios-component-stepper/blob/main/.github/assets/anatomy.png)
 

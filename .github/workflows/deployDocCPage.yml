@@ -1,71 +1,11 @@
-# name: build-demo-app
-# on:
-#   issue_comment:
-#     types: [created]
-
-# jobs:
-#   build-demo-app:
-#     uses: leboncoin/spark-ios-common/.github/workflows/buildDemoApp.yml@main
-
 name: deploy-docC-on-github-page
 
 on:
   release:
     types: [published, deleted]
-  # push:
-  #   branches: ["main"]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  repo_name: ${{ github.event.repository.name }}
-  xcodebuild_derivedData: ".spmComponentDerivedData"
-  doc_path: "docs"
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: macos-15
-    steps:
-      - name: Check configuration
-        if: ${{ vars.SPM_NAME == '' }}
-        run: |
-          echo "::error::SPM_NAME variable is NOT set on the repository settings"
-          exit 1
-      - name: Lowercase SPM_NAME
-        run: |
-          echo "spm_name_lower=`echo ${{ vars.SPM_NAME }} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
-      - name: Package name
-        run: echo "Generate DocC for ${{ vars.SPM_NAME }} SPM at ${{ env.repo_name }}"
-      - name: Checkout Action
-        uses: actions/checkout@v4
-      - name: Build DocC
-        run: |
-          xcodebuild docbuild -scheme SparkStepper -derivedDataPath ${{ env.xcodebuild_derivedData }} -destination 'generic/platform=iOS';
-          $(xcrun --find docc) process-archive \
-            transform-for-static-hosting ${{ env.xcodebuild_derivedData }}/Build/Products/Debug-iphoneos/SparkStepper.doccarchive \
-            --output-path ${{ env.doc_path }} \
-            --hosting-base-path ${{ env.repo_name }};
-          echo "<script>window.location.href += \"/documentation/${{ env.spm_name_lower }}\"</script>" > ${{ env.doc_path }}/index.html;
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.doc_path }}
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  build-demo-app:
+    uses: leboncoin/spark-ios-common/.github/workflows/deployDocCPage.yml@main

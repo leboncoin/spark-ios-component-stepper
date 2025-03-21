@@ -1,8 +1,6 @@
 name: deploy-docC-on-github-page
 
 on:
-  # release:
-  #   types: [published, deleted]
   push:
     branches: ["main"]
   # Allows you to run this workflow manually from the Actions tab

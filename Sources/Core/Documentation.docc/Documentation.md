@@ -16,10 +16,10 @@ It can manage a simple numeric number or a complexe format (currency, percent, .
 ### Rendering
 
 With a numeric number
-![Stepper rendering.](component.png)
+![Component rendering.](component.png)
 
 With a currency 
-![Stepper rendering.](component_with_format.png)
+![Component rendering.](component_with_format.png)
 
 ### Resources
 

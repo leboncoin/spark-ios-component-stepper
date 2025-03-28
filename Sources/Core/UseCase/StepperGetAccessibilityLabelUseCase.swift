@@ -19,6 +19,12 @@ protocol StepperGetAccessibilityLabelUseCaseable {
 
 struct StepperGetAccessibilityLabelUseCase: StepperGetAccessibilityLabelUseCaseable {
 
+    // MARK: - Class
+
+    private final class Class {}
+
+    // MARK: - Execute
+
     func execute(
         for type: StepperButtonType,
         customLabel: String?,
@@ -28,7 +34,7 @@ struct StepperGetAccessibilityLabelUseCase: StepperGetAccessibilityLabelUseCasea
             return customLabel
         } else {
             let localizedKey = self.execute(for: type, text: text)
-            return String(localized: localizedKey, bundle: .module)
+            return String(localized: localizedKey, bundle: .current)
         }
     }
 

@@ -12,7 +12,7 @@ import SparkTheming
 // MARK: - Protocol
 
 protocol StepperGetAccessibilityLabelUseCaseable {
-    func execute(for type: StepperButtonType, customLabel: String?, text: String) -> String
+    func execute(for type: StepperButtonType, context: String?, customLabel: String?) -> String
 }
 
 // MARK: - Implementation
@@ -27,23 +27,29 @@ struct StepperGetAccessibilityLabelUseCase: StepperGetAccessibilityLabelUseCasea
 
     func execute(
         for type: StepperButtonType,
-        customLabel: String?,
-        text: String
+        context: String?,
+        customLabel: String?
     ) -> String {
         if let customLabel {
             return customLabel
         } else {
-            let localizedKey = self.execute(for: type, text: text)
-            return String(localized: localizedKey, bundle: .current)
+            let prefix = if let context {
+                context + ", "
+            } else {
+                ""
+            }
+
+            let localizedKey = self.execute(for: type)
+            return prefix + String(localized: localizedKey, bundle: .current)
         }
     }
 
-    private func execute(for type: StepperButtonType, text: String) -> String.LocalizationValue {
+    private func execute(for type: StepperButtonType) -> String.LocalizationValue {
         switch type {
         case .decrement:
-            "accessibility_label_decrement_\(text)"
+            "accessibility_label_decrement"
         case .increment:
-            "accessibility_label_increment_\(text)"
+            "accessibility_label_increment"
         }
     }
 }

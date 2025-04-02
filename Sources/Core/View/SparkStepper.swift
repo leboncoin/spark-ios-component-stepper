@@ -60,6 +60,7 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     @Environment(\.isEnabled) private var isEnabled
 
+    private var contextAccessibilityLabel: String?
     private var customDecrementAccessibilityLabel: String?
     private var customIncrementAccessibilityLabel: String?
 
@@ -303,8 +304,8 @@ public struct SparkStepper<V>: View where V: Strideable {
 
         return self.getAccessibilityLabelUseCase.execute(
             for: type,
-            customLabel: customAccessibilityLabel,
-            text: self.formattedTextObservable.getText()
+            context: self.contextAccessibilityLabel,
+            customLabel: customAccessibilityLabel
         )
     }
 
@@ -348,9 +349,34 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     // MARK: - Public Modifier
 
+    /// Set a context for decrement and increment accessibility label of the stepper.
+    /// - parameter context: the context for the accessibility label
+    /// - Returns: Current Stepper View.
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// SparkStepper(...)
+    ///     .contextAccessibilityLabel("Number of people")
+    /// ```
+    /// So, **Voice Over** will read the following value :
+    /// - for the **decrement button**: *Number of people, Decrement*
+    /// - for the **increment button**: *Number of people, Increment*
+    public func contextAccessibilityLabel(_ context: String) -> Self {
+        var copy = self
+        copy.contextAccessibilityLabel = context
+        return copy
+    }
+
     /// Set the Increment accessibility label of the stepper
     /// - parameter label: the accessibility label
     /// - Returns: Current Stepper View.
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// SparkStepper(...)
+    ///     .incrementAccessibilityLabel("My custom increment Label")
+    /// ```
+    /// So, **Voice Over** will read the following value: *My custom increment Label*
     public func incrementAccessibilityLabel(_ label: String) -> Self {
         var copy = self
         copy.customIncrementAccessibilityLabel = label
@@ -360,6 +386,13 @@ public struct SparkStepper<V>: View where V: Strideable {
     /// Set the Decrement accessibility label of the stepper
     /// - parameter label: the accessibility label
     /// - Returns: Current Stepper View.
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// SparkStepper(...)
+    ///     .decrementAccessibilityLabel("My custom decrement Label")
+    /// ```
+    /// So, **Voice Over** will read the following value: *My custom decrement Label*
     public func decrementAccessibilityLabel(_ label: String) -> Self {
         var copy = self
         copy.customDecrementAccessibilityLabel = label

@@ -143,20 +143,55 @@ public final class SparkUIStepper: UIControl {
         return self.valueSubject
     }
 
-    /// Set a custom increment accessibility label of the stepper
+    // MARK: - Public A11y Properties
+
+    /// Set a context for decrement and increment accessibility label of the stepper.
     ///
     /// The default value for this property is **nil**.
-    public var customIncrementAccessibilityLabel: String? {
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// let stepper = SparkUIStepper()
+    /// stepper.contextAccessibilityLabel = "Number of people"
+    /// ```
+    /// So, **Voice Over** will read the following value :
+    /// - for the **decrement button**: *Number of people, Decrement*
+    /// - for the **increment button**: *Number of people, Increment*
+    public var contextAccessibilityLabel: String? {
         didSet {
             self.updateButtonAccessibilityValue()
         }
     }
+
     /// Set a custom decrement accessibility label of the stepper
     ///
     /// The default value for this property is **nil**.
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// let stepper = SparkUIStepper(...)
+    /// stepper.customDecrementAccessibilityLabel = "My custom decrement Label"
+    /// ```
+    /// So, **Voice Over** will read the following value: *My custom decrement Label*
     public var customDecrementAccessibilityLabel: String? {
         didSet {
-            self.updateButtonAccessibilityValue()
+            self.updateButtonAccessibilityLabel()
+        }
+    }
+
+    /// Set a custom increment accessibility label of the stepper
+    ///
+    /// The default value for this property is **nil**.
+    ///
+    /// Example of usage  :
+    /// ```swift
+    /// let stepper = SparkUIStepper(...)
+    /// stepper.customIncrementAccessibilityLabel = "My custom increment Label"
+    /// ```
+    /// So, **Voice Over** will read the following value: *My custom increment Label*
+    public var customIncrementAccessibilityLabel: String? {
+        didSet {
+            self.updateButtonAccessibilityLabel()
         }
     }
 
@@ -468,8 +503,8 @@ public final class SparkUIStepper: UIControl {
 
             object.button.accessibilityLabel = self.getAccessibilityLabelUseCase.execute(
                 for: type,
-                customLabel: object.customAccessibilityLabel,
-                text: self.formattedValue
+                context: self.contextAccessibilityLabel,
+                customLabel: object.customAccessibilityLabel
             )
         }
     }

@@ -29,7 +29,21 @@ The text between the two buttons is not accessible but the **value** of the text
 
 ### Label
 
-The default **decrement** and **increment** buttons *accessibility labels* using **localization** (english and french only). 
+#### Default Value
+
+The **decrement** and **increment** buttons *accessibility labels* using **localization** (english and french only).
+
+The default values are :
+
+- Decrement : 
+    - English : **Decrement**
+    - French : **Décrémenter**
+
+- Increment : 
+    - English : **Increment**
+    - French : **Incrémenter**
+
+#### Override Value
 
 You can override the decrement and increment accessibilty labels with : 
 - UIKit :
@@ -40,10 +54,20 @@ You can override the decrement and increment accessibilty labels with :
     - Decrement : ``SparkStepper/SparkStepper/decrementAccessibilityLabel(_:)``
     - Increment : ``SparkStepper/SparkStepper/incrementAccessibilityLabel(_:)`` 
 
+---
 
-You can also add some **context** (the name of the stepper for e.g like *"Number of people"*):
+You can also add some **context** (the name of the stepper for example like *"Number of people"*):
 - UIKit : ``SparkUIStepper/contextAccessibilityLabel``
-- SwiftUI : ``SparkStepper/SparkStepper/contextAccessibilityLabel(_:)`` 
+- SwiftUI : ``SparkStepper/SparkStepper/contextAccessibilityLabel(_:)``
+
+Example with a **context** setted to *Number of people* :
+- Decrement : 
+    - English : **Number of people, Decrement**
+    - French : **Nombre de personne, Décrémenter**
+
+- Increment : 
+    - English : **Number of people, Increment**
+    - French : **Nombre de personne, Incrémenter**
 
 ## Resources
 

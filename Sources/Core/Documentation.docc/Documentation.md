@@ -10,7 +10,7 @@ It can manage a simple numeric number or a complexe format (currency, percent, .
 
 ### Implementation
 
-- On SwiftUI, you need to use the ``SparkComponentStepper`` View.
+- On SwiftUI, you need to use the ``SparkStepper`` View.
 - On UIKit, you need to use the ``SparkUIStepper`` which inherit from an UIControl.
 
 ### Rendering
@@ -58,7 +58,7 @@ You can override the decrement and increment accessibilty labels with :
 
 You can also add some **context** (the name of the stepper for example like *"Number of people"*):
 - UIKit : ``SparkUIStepper/contextAccessibilityLabel``
-- SwiftUI : ``SparkComponentStepper/SparkComponentStepper/contextAccessibilityLabel(_:)``
+- SwiftUI : ``SparkStepper/contextAccessibilityLabel(_:)``
 
 Example with a **context** setted to *Number of people* :
 - Decrement : 

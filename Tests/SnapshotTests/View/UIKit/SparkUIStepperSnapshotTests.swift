@@ -1,5 +1,5 @@
 //
-//  SparkStepperUIViewSnapshotTests.swift
+//  SparkUIStepperSnapshotTests.swift
 //  SparkComponentStepperSnapshotTests
 //
 //  Created by robin.lemaire on 30/11/2023.
@@ -15,7 +15,7 @@ import SnapshotTesting
 import SparkTheming
 import SparkTheme
 
-final class SparkStepperUIViewSnapshotTests: UIKitComponentSnapshotTestCase {
+final class SparkUIStepperSnapshotTests: UIKitComponentSnapshotTestCase {
 
     // MARK: - Properties
 

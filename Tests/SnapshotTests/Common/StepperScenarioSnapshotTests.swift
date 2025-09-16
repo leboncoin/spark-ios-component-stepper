@@ -1,12 +1,12 @@
 //
 //  StepperScenarioSnapshotTests.swift
-//  SparkStepperSnapshotTests
+//  SparkComponentStepperSnapshotTests
 //
 //  Created by robin.lemaire on 05/03/2025.
 //  Copyright © 2023 Leboncoin. All rights reserved.
 //
 
-@testable import SparkStepper
+@testable import SparkComponentStepper
 @_spi(SI_SPI) import SparkCommonSnapshotTesting
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkCommonTesting

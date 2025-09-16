@@ -1,13 +1,13 @@
 //
 //  SparkStepper.swift
-//  SparkStepper
+//  SparkComponentStepper
 //
 //  Created by robin.lemaire on 26/02/2025.
 //  Copyright © 2025 Leboncoin. All rights reserved.
 //
 
 import SwiftUI
-import SparkButton
+import SparkComponentButton
 import SparkTheming
 
 /// A **Spark** control for incrementing or decrementing a value.
@@ -45,7 +45,7 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     // MARK: - Properties
 
-    private let theme: Theme
+    private let theme: any Theme
     @Binding private var value: V
     private let bounds: ClosedRange<V>
     private let step: V.Stride
@@ -405,7 +405,7 @@ public struct SparkStepper<V>: View where V: Strideable {
 private extension IconButtonView {
 
     init(
-        theme: Theme,
+        theme: any Theme,
         image: Image,
         action: @escaping () -> Void
     ) {

@@ -1,13 +1,13 @@
 //
 //  SparkUIStepper.swift
-//  SparkStepper
+//  SparkComponentStepper
 //
 //  Created by robin.lemaire on 26/02/2025.
 //  Copyright © 2025 Leboncoin. All rights reserved.
 //
 
 import SwiftUI
-import SparkButton
+import SparkComponentButton
 import SparkTheming
 @_spi(SI_SPI) import SparkCommon
 import Combine
@@ -52,7 +52,7 @@ public final class SparkUIStepper: UIControl {
     // MARK: - Public Properties
 
     /// The stepper's current theme.
-    public var theme: Theme {
+    public var theme: any Theme {
         didSet {
             self.updateAll()
         }
@@ -620,7 +620,7 @@ public final class SparkUIStepper: UIControl {
 extension IconButtonUIView {
 
     convenience init(
-        theme: Theme,
+        theme: any Theme,
         accessibilityIdentifier: String
     ) {
         self.init(

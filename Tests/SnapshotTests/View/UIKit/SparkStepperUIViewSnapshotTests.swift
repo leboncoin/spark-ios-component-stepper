@@ -1,6 +1,6 @@
 //
 //  SparkStepperUIViewSnapshotTests.swift
-//  SparkStepperSnapshotTests
+//  SparkComponentStepperSnapshotTests
 //
 //  Created by robin.lemaire on 30/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import SnapshotTesting
-@testable import SparkStepper
+@testable import SparkComponentStepper
 @_spi(SI_SPI) import SparkCommonSnapshotTesting
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkThemingTesting
@@ -19,7 +19,7 @@ final class SparkStepperUIViewSnapshotTests: UIKitComponentSnapshotTestCase {
 
     // MARK: - Properties
 
-    private let theme: Theme = SparkTheme.shared
+    private let theme: any Theme = SparkTheme.shared
 
     // MARK: - Tests
 

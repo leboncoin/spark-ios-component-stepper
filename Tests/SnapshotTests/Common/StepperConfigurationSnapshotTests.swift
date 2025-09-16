@@ -1,12 +1,12 @@
 //
 //  StepperSnapshotTestConfiguration.swift
-//  SparkStepper
+//  SparkComponentStepper
 //
 //  Created by louis.borlee on 05/03/2025.
 //  Copyright © 2024 Leboncoin. All rights reserved.
 //
 
-@testable import SparkStepper
+@testable import SparkComponentStepper
 @_spi(SI_SPI) import SparkCommonSnapshotTesting
 @_spi(SI_SPI) import SparkCommon
 import XCTest

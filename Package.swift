@@ -5,19 +5,19 @@ import PackageDescription
 
 // swiftlint:disable all
 let package = Package(
-    name: "SparkStepper",
+    name: "SparkComponentStepper",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v16)
     ],
     products: [
         .library(
-            name: "SparkStepper",
-            targets: ["SparkStepper"]
+            name: "SparkComponentStepper",
+            targets: ["SparkComponentStepper"]
         ),
         .library(
-            name: "SparkStepperTesting",
-            targets: ["SparkStepperTesting"]
+            name: "SparkComponentStepperTesting",
+            targets: ["SparkComponentStepperTesting"]
         )
     ],
     dependencies: [
@@ -39,7 +39,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SparkStepper",
+            name: "SparkComponentStepper",
             dependencies: [
                 .product(
                     name: "SparkCommon",
@@ -50,7 +50,7 @@ let package = Package(
                     package: "spark-ios-theming"
                 ),
                 .product(
-                    name: "SparkButton",
+                    name: "SparkComponentButton",
                     package: "spark-ios-component-button"
                 )
             ],
@@ -60,9 +60,9 @@ let package = Package(
             ]
         ),
         .target(
-            name: "SparkStepperTesting",
+            name: "SparkComponentStepperTesting",
             dependencies: [
-                "SparkStepper",
+                "SparkComponentStepper",
                 .product(
                     name: "SparkCommon",
                     package: "spark-ios-common"
@@ -83,10 +83,10 @@ let package = Package(
             path: "Sources/Testing"
         ),
         .testTarget(
-            name: "SparkStepperUnitTests",
+            name: "SparkComponentStepperUnitTests",
             dependencies: [
-                "SparkStepper",
-                "SparkStepperTesting",
+                "SparkComponentStepper",
+                "SparkComponentStepperTesting",
                 .product(
                     name: "SparkCommonTesting",
                     package: "spark-ios-common"
@@ -99,10 +99,10 @@ let package = Package(
             path: "Tests/UnitTests"
         ),
         .testTarget(
-            name: "SparkStepperSnapshotTests",
+            name: "SparkComponentStepperSnapshotTests",
             dependencies: [
-                "SparkStepper",
-                "SparkStepperTesting",
+                "SparkComponentStepper",
+                "SparkComponentStepperTesting",
                 .product(
                     name: "SparkCommonSnapshotTesting",
                     package: "spark-ios-common"

@@ -1,13 +1,13 @@
 //
 //  StepperGetIsDisabledUseCaseTests.swift
-//  SparkStepper
+//  SparkComponentStepper
 //
 //  Created by robin.lemaire on 04/03/2025.
 //  Copyright © 2025 Leboncoin. All rights reserved.
 //
 
 import XCTest
-@testable import SparkStepper
+@testable import SparkComponentStepper
 
 class StepperGetIsDisabledUseCaseTests: XCTestCase {
 

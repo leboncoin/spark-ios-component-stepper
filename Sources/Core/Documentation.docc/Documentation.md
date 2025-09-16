@@ -1,4 +1,4 @@
-# ``SparkStepper``
+# ``SparkComponentStepper``
 
 The Spark Stepper allow users to quickly specify a numerical value within a given range.
 
@@ -10,7 +10,7 @@ It can manage a simple numeric number or a complexe format (currency, percent, .
 
 ### Implementation
 
-- On SwiftUI, you need to use the ``SparkStepper`` View.
+- On SwiftUI, you need to use the ``SparkComponentStepper`` View.
 - On UIKit, you need to use the ``SparkUIStepper`` which inherit from an UIControl.
 
 ### Rendering
@@ -51,14 +51,14 @@ You can override the decrement and increment accessibilty labels with :
     - Increment : ``SparkUIStepper/customIncrementAccessibilityLabel``
 
 - SwiftUI :
-    - Decrement : ``SparkStepper/SparkStepper/decrementAccessibilityLabel(_:)``
-    - Increment : ``SparkStepper/SparkStepper/incrementAccessibilityLabel(_:)`` 
+    - Decrement : ``SparkStepper/decrementAccessibilityLabel(_:)``
+    - Increment : ``SparkStepper/incrementAccessibilityLabel(_:)`` 
 
 ---
 
 You can also add some **context** (the name of the stepper for example like *"Number of people"*):
 - UIKit : ``SparkUIStepper/contextAccessibilityLabel``
-- SwiftUI : ``SparkStepper/SparkStepper/contextAccessibilityLabel(_:)``
+- SwiftUI : ``SparkComponentStepper/SparkComponentStepper/contextAccessibilityLabel(_:)``
 
 Example with a **context** setted to *Number of people* :
 - Decrement : 

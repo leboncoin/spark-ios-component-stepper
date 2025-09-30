@@ -30,9 +30,7 @@ final class SparkUIStepperSnapshotTests: UIKitComponentSnapshotTestCase {
             let configurations: [StepperConfigurationSnapshotTests] = try scenario.configuration()
             for configuration in configurations {
                 let view: SparkUIStepper = .init(
-                    theme: self.theme,
-                    decrementImage: .init(systemName: configuration.decrementImageName) ?? UIImage(),
-                    incrementImage: .init(systemName: configuration.incrementImageName) ?? UIImage()
+                    theme: self.theme
                 )
                 view.value = configuration.state.value(from: configuration.range)
                 view.minimumValue = configuration.range.lowerBound

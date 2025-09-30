@@ -58,9 +58,7 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
                 theme: self.theme,
                 value: .constant(configuration.state.value(from: configuration.range)),
                 in: configuration.range,
-                format: .currency(code: "EUR").locale(locale),
-                decrementImage: .init(systemName: configuration.decrementImageName),
-                incrementImage: .init(systemName: configuration.incrementImageName)
+                format: .currency(code: "EUR").locale(locale)
             )
 
         case .percentage:
@@ -68,18 +66,14 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
                 theme: self.theme,
                 value: .constant(configuration.state.value(from: configuration.range)),
                 in: configuration.range,
-                format: .percent.locale(locale),
-                decrementImage: .init(systemName: configuration.decrementImageName),
-                incrementImage: .init(systemName: configuration.incrementImageName)
+                format: .percent.locale(locale)
             )
 
         case .numberOnly:
             SparkStepper(
                 theme: self.theme,
                 value: .constant(Int(configuration.state.value(from: configuration.range))),
-                in: Int(configuration.range.lowerBound)...Int(configuration.range.upperBound),
-                decrementImage: .init(systemName: configuration.decrementImageName),
-                incrementImage: .init(systemName: configuration.incrementImageName)
+                in: Int(configuration.range.lowerBound)...Int(configuration.range.upperBound)
             )
         }
     }

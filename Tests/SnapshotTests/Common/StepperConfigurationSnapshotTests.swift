@@ -24,8 +24,6 @@ struct StepperConfigurationSnapshotTests {
     let state: StepperState
     let contentResilience: StepperContentResilience
 
-    let decrementImageName = "arrowtriangle.backward"
-    let incrementImageName = "arrowtriangle.right"
     let range = Double(0)...10
 
     let width: CGFloat?

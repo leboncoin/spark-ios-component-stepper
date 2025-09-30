@@ -26,9 +26,7 @@ import Combine
 /// ```swift
 /// let theme: SparkTheming.Theme = MyTheme()
 /// let stepper = SparkUIStepper(
-///     theme: theme,
-///     decrementImage: UIImage(systemName: "minus"),
-///     incrementImage: UIImage(systemName: "plus")
+///     theme: theme
 /// )
 /// stepper.isContinuous = false
 /// stepper.minimumValue = 100
@@ -301,15 +299,24 @@ public final class SparkUIStepper: UIControl {
 
     // MARK: - Initialization
 
+    @available(*, deprecated, message: "Use the init wihout images")
+    public convenience init(
+        theme: any Theme,
+        decrementImage: UIImage,
+        incrementImage: UIImage
+    ) {
+        self.init(
+            theme
+        )
+    }
+
     /// Initialize a new spark strideable stepper.
     ///
     /// Implementation example :
     /// ```swift
     /// let theme: SparkTheming.Theme = MyTheme()
     /// let stepper = SparkUIStepper(
-    ///     theme: theme,
-    ///     decrementImage: UIImage(systemName: "minus"),
-    ///     incrementImage: UIImage(systemName: "plus")
+    ///     theme: theme
     /// )
     /// self.addSubview(stepper)
     /// ```
@@ -318,24 +325,16 @@ public final class SparkUIStepper: UIControl {
     ///
     /// - Parameters:
     ///   - theme: The spark theme of the stepper.
-    ///   - decrementImage: The image used in the decrement button.
-    ///   - incrementImage: The image used in the increment button.
     public convenience init(
-        theme: any Theme,
-        decrementImage: UIImage,
-        incrementImage: UIImage
+        theme: any Theme
     ) {
         self.init(
-            theme,
-            decrementImage: decrementImage,
-            incrementImage: incrementImage
+            theme
         )
     }
 
     internal init(
         _ theme: any Theme,
-        decrementImage: UIImage,
-        incrementImage: UIImage,
         getAccessibilityLabelUseCase: StepperGetAccessibilityLabelUseCaseable = StepperGetAccessibilityLabelUseCase(),
         getAcceleratedIntervalUseCase: StepperGetAcceleratedIntervalUseCaseable = StepperGetAcceleratedIntervalUseCase(),
         getGetFormattedValueUseCase: StepperGetFormattedValueUseCaseable = StepperGetFormattedValueUseCase(),
@@ -360,8 +359,8 @@ public final class SparkUIStepper: UIControl {
 
         super.init(frame: .zero)
 
-        self.decrementButton.setImage(decrementImage, for: .normal)
-        self.incrementButton.setImage(incrementImage, for: .normal)
+        self.decrementButton.setImage(.sparkMinus, for: .normal)
+        self.incrementButton.setImage(.sparkPlus, for: .normal)
 
         self.setupView()
     }

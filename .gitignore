@@ -8,10 +8,11 @@ DerivedData/
 *Generated/
 Package.resolved
 .swiftlint/
+.swiftlint/RemoteConfigCache
+.home/
+.spmComponentDerivedData/
+.sparkans/
 
 # Github Actions
 .spmComponentDerivedData/
 generatedDocC/
-
-# SwiftLint Remote Config Cache
-.swiftlint/RemoteConfigCache

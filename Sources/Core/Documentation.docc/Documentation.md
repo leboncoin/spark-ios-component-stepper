@@ -72,5 +72,5 @@ Example with a **context** setted to *Number of people* :
 ## Resources
 
 - Specification on [ZeroHeight](https://zeroheight.com/1186e1705/p/95f37c-stepper)
-- Desing on [Figma](https://www.figma.com/design/0QchRdipAVuvVoDfTjLrgQ/Spark-Component-Specs?node-id=51908-6090)
+- Design on [Figma](https://www.figma.com/design/0QchRdipAVuvVoDfTjLrgQ/Spark-Component-Specs?node-id=51908-6090)
 - Discussion on [Slack](https://adevinta.slack.com/archives/C07GGG6TUGP)

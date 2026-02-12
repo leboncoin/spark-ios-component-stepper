@@ -32,6 +32,7 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
 
             for configuration in configurations {
                 let view = self.createComponent(for: configuration)
+                    .sparkTheme(self.theme)
                     .disabled(configuration.state == .disabled)
                     .frame(width: configuration.width)
                     .padding(1)
@@ -55,7 +56,6 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
         switch configuration.contentResilience {
         case .currency:
             SparkStepper(
-                theme: self.theme,
                 value: .constant(configuration.state.value(from: configuration.range)),
                 in: configuration.range,
                 format: .currency(code: "EUR").locale(locale)
@@ -63,7 +63,6 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
 
         case .percentage:
             SparkStepper(
-                theme: self.theme,
                 value: .constant(configuration.state.value(from: configuration.range)),
                 in: configuration.range,
                 format: .percent.locale(locale)
@@ -71,7 +70,6 @@ final class SparkStepperSnapshotTests: SwiftUIComponentSnapshotTestCase {
 
         case .numberOnly:
             SparkStepper(
-                theme: self.theme,
                 value: .constant(Int(configuration.state.value(from: configuration.range))),
                 in: Int(configuration.range.lowerBound)...Int(configuration.range.upperBound)
             )

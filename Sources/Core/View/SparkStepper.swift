@@ -28,12 +28,12 @@ import SparkTheming
 ///
 ///     var body: some View {
 ///         SparkStepper(
-///             theme: self.theme,
 ///             value: self.$value,
 ///             in: self.bounds,
 ///             step: self.step,
 ///             format: .currency(code: "EUR")
 ///         )
+///         .sparkTheme(self.theme)
 ///     }
 /// }
 /// ```
@@ -44,7 +44,6 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     // MARK: - Properties
 
-    private let theme: any Theme
     @Binding private var value: V
     private let bounds: ClosedRange<V>
     private let step: V.Stride
@@ -57,6 +56,7 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     @ScaledMetric private var textMinWidth: CGFloat
 
+    @Environment(\.theme) private var theme
     @Environment(\.isEnabled) private var isEnabled
 
     private var contextAccessibilityLabel: String?
@@ -64,6 +64,8 @@ public struct SparkStepper<V>: View where V: Strideable {
     private var customIncrementAccessibilityLabel: String?
 
     @ObservedObject private var formattedTextObservable: StepperFormattedTextObservable<V>
+
+    // MARK: - Private Properties
 
     private let getAccessibilityLabelUseCase = StepperGetAccessibilityLabelUseCase()
     private let getAcceleratedIntervalUseCase = StepperGetAcceleratedIntervalUseCase()
@@ -74,26 +76,10 @@ public struct SparkStepper<V>: View where V: Strideable {
     private let setValueUseCase = StepperSetValueUseCase()
     private let stopTrackingUseCase = StepperStopTrackingUseCase()
 
+    @available(*, deprecated, message: "Remove the deprecated and this property ASAP. (02/02/2026)")
+    private var deprecatedTheme: (any Theme)?
+
     // MARK: - Initialization
-
-    @available(*, deprecated, message: "Use the init wihout images")
-    public init(
-        theme: any Theme,
-        value: Binding<V>,
-        in bounds: ClosedRange<V>,
-        step: V.Stride = 1,
-        decrementImage: Image,
-        incrementImage: Image
-    ) {
-        self.theme = theme
-        self._value = value
-        self.bounds = bounds
-        self.step = step
-
-        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
-
-        self.formattedTextObservable = .init(value: value.wrappedValue)
-    }
 
     /// Initialize a new spark strideable stepper.
     ///
@@ -107,11 +93,11 @@ public struct SparkStepper<V>: View where V: Strideable {
     ///
     ///     var body: some View {
     ///         SparkStepper(
-    ///             theme: self.theme,
     ///             value: self.$value,
     ///             in: self.bounds,
     ///             step: self.step
     ///         )
+    ///         .sparkTheme(self.theme)
     ///     }
     /// }
     /// ```
@@ -119,7 +105,6 @@ public struct SparkStepper<V>: View where V: Strideable {
     /// ![Stepper rendering.](component.png)
     ///
     /// - Parameters:
-    ///   - theme: The spark theme of the stepper.
     ///   - value: A `Binding` to a value that you provide.
     ///   - bounds: A closed range that describes the upper and lower bounds
     ///     permitted by the stepper.
@@ -127,12 +112,10 @@ public struct SparkStepper<V>: View where V: Strideable {
     ///     user clicks or taps the stepper's increment or decrement buttons,
     ///     respectively.
     public init(
-        theme: any Theme,
         value: Binding<V>,
         in bounds: ClosedRange<V>,
         step: V.Stride = 1
     ) {
-        self.theme = theme
         self._value = value
         self.bounds = bounds
         self.step = step
@@ -140,29 +123,6 @@ public struct SparkStepper<V>: View where V: Strideable {
         self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
 
         self.formattedTextObservable = .init(value: value.wrappedValue)
-    }
-
-    @available(*, deprecated, message: "Use the init wihout images")
-    public init<F>(
-        theme: any Theme,
-        value: Binding<F.FormatInput>,
-        in bounds: ClosedRange<F.FormatInput>,
-        step: F.FormatInput.Stride = 1,
-        format: F,
-        decrementImage: Image,
-        incrementImage: Image
-    ) where F: ParseableFormatStyle, F.FormatInput == V, F.FormatOutput == String {
-        self.theme = theme
-        self._value = value
-        self.bounds = bounds
-        self.step = step
-
-        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
-
-        self.formattedTextObservable = .init(
-            value: value.wrappedValue,
-            format: format
-        )
     }
 
     /// Initialize a new spark strideable stepper.
@@ -177,12 +137,12 @@ public struct SparkStepper<V>: View where V: Strideable {
     ///
     ///     var body: some View {
     ///         SparkStepper(
-    ///             theme: self.theme,
     ///             value: self.$value,
     ///             in: self.bounds,
     ///             step: self.step,
     ///             format: .currency(code: "EUR")
     ///         )
+    ///         .sparkTheme(self.theme)
     ///     }
     /// }
     /// ```
@@ -190,7 +150,6 @@ public struct SparkStepper<V>: View where V: Strideable {
     /// ![Stepper rendering.](component_with_format.png)
     ///
     /// - Parameters:
-    ///   - theme: The spark theme of the stepper.
     ///   - value: A `Binding` to a value that you provide.
     ///   - bounds: A closed range that describes the upper and lower bounds
     ///     permitted by the stepper.
@@ -205,13 +164,112 @@ public struct SparkStepper<V>: View where V: Strideable {
     ///     text in an invalid state, the stepper updates the text to the last
     ///     known valid value.
     public init<F>(
+        value: Binding<F.FormatInput>,
+        in bounds: ClosedRange<F.FormatInput>,
+        step: F.FormatInput.Stride = 1,
+        format: F
+    ) where F: ParseableFormatStyle, F.FormatInput == V, F.FormatOutput == String {
+        self._value = value
+        self.bounds = bounds
+        self.step = step
+
+        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
+
+        self.formattedTextObservable = .init(
+            value: value.wrappedValue,
+            format: format
+        )
+    }
+
+    // MARK: - Deprecated Initialization
+
+    @available(*, deprecated, message: "Use the init without theme and images instead. Set the theme after the init.")
+    public init(
+        theme: any Theme,
+        value: Binding<V>,
+        in bounds: ClosedRange<V>,
+        step: V.Stride = 1,
+        decrementImage: Image,
+        incrementImage: Image
+    ) {
+        self.deprecatedTheme = theme
+        self._value = value
+        self.bounds = bounds
+        self.step = step
+
+        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
+        self.formattedTextObservable = .init(value: value.wrappedValue)
+    }
+
+    @available(*, deprecated, message: "Use the init without theme instead. Set the theme after the init.")
+    public init(
+        theme: any Theme,
+        value: Binding<V>,
+        in bounds: ClosedRange<V>,
+        step: V.Stride = 1
+    ) {
+        self.deprecatedTheme = theme
+        self._value = value
+        self.bounds = bounds
+        self.step = step
+
+        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
+        self.formattedTextObservable = .init(value: value.wrappedValue)
+    }
+
+    @available(*, deprecated, message: "Use the init without theme instead. Set the theme after the init.")
+    public init<F>(
+        theme: any Theme,
+        value: Binding<F.FormatInput>,
+        in bounds: ClosedRange<F.FormatInput>,
+        step: F.FormatInput.Stride = 1,
+        format: F,
+        decrementImage: Image,
+        incrementImage: Image
+    ) where F: ParseableFormatStyle, F.FormatInput == V, F.FormatOutput == String {
+        self.deprecatedTheme = theme
+        self._value = value
+        self.bounds = bounds
+        self.step = step
+
+        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
+
+        self.formattedTextObservable = .init(
+            value: value.wrappedValue,
+            format: format
+        )
+    }
+
+    @available(*, deprecated, message: "Use the init without theme instead. Set the theme after the init.")
+    public init<F>(
         theme: any Theme,
         value: Binding<F.FormatInput>,
         in bounds: ClosedRange<F.FormatInput>,
         step: F.FormatInput.Stride = 1,
         format: F
     ) where F: ParseableFormatStyle, F.FormatInput == V, F.FormatOutput == String {
-        self.theme = theme
+        self.deprecatedTheme = theme
+        self._value = value
+        self.bounds = bounds
+        self.step = step
+
+        self._textMinWidth = .init(wrappedValue: StepperConstants.textMinWidth)
+
+        self.formattedTextObservable = .init(
+            value: value.wrappedValue,
+            format: format
+        )
+    }
+
+    @available(*, deprecated, message: "Use the init wihout images")
+    public init<F>(
+        value: Binding<F.FormatInput>,
+        in bounds: ClosedRange<F.FormatInput>,
+        step: F.FormatInput.Stride = 1,
+        format: F,
+        decrementImage: Image,
+        incrementImage: Image
+    ) where F: ParseableFormatStyle, F.FormatInput == V, F.FormatOutput == String {
         self._value = value
         self.bounds = bounds
         self.step = step
@@ -235,8 +293,8 @@ public struct SparkStepper<V>: View where V: Strideable {
                 Spacer(minLength: 0)
 
                 Text(self.formattedTextObservable.getText())
-                    .font(self.getTextStyleUseCase.executeFontToken(theme: self.theme).font)
-                    .foregroundStyle(self.getTextStyleUseCase.executeColorToken(theme: self.theme).color)
+                    .font(self.getTextStyleUseCase.executeFontToken(theme: self.getTheme()).font)
+                    .foregroundStyle(self.getTextStyleUseCase.executeColorToken(theme: self.getTheme()).color)
                     .frame(minWidth: self.textMinWidth)
 
                 Spacer(minLength: 0)
@@ -258,7 +316,7 @@ public struct SparkStepper<V>: View where V: Strideable {
     @ViewBuilder
     private func button(for type: StepperButtonType) -> some View {
         IconButtonView(
-            theme: self.theme,
+            theme: self.getTheme(),
             image: self.buttonImage(for: type)
         ) {
             if !self.isTracking {
@@ -292,15 +350,19 @@ public struct SparkStepper<V>: View where V: Strideable {
 
     // MARK: - Getter
 
+    private func getTheme() -> any Theme {
+        return self.deprecatedTheme ?? self.theme.value
+    }
+
     private func horizontalSpacing() -> CGFloat {
         return self.getSpacingUseCase.execute(
-            spacing: self.theme.layout.spacing
+            spacing: self.getTheme().layout.spacing
         )
     }
 
     private func opacity() -> CGFloat {
         return self.getOpacityUseCase.execute(
-            dims: self.theme.dims,
+            dims: self.getTheme().dims,
             isDisabled: !self.isEnabled
         )
     }
@@ -439,7 +501,6 @@ private extension IconButtonView {
             intent: StepperConstants.IconButton.intent,
             variant: StepperConstants.IconButton.variant,
             size: StepperConstants.IconButton.size,
-            shape: StepperConstants.IconButton.shape,
             action: action
         )
     }

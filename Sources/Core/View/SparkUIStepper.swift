@@ -626,8 +626,7 @@ extension IconButtonUIView {
             theme: theme,
             intent: StepperConstants.IconButton.intent,
             variant: StepperConstants.IconButton.variant,
-            size: StepperConstants.IconButton.size,
-            shape: StepperConstants.IconButton.shape
+            size: StepperConstants.IconButton.size
         )
         self.accessibilityIdentifier = accessibilityIdentifier
     }

@@ -22,6 +22,5 @@ class StepperConstantsTests: XCTestCase {
         XCTAssertEqual(StepperConstants.IconButton.intent, .support)
         XCTAssertEqual(StepperConstants.IconButton.variant, .outlined)
         XCTAssertEqual(StepperConstants.IconButton.size, .medium)
-        XCTAssertEqual(StepperConstants.IconButton.shape, .rounded)
     }
 }

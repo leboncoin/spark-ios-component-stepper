@@ -501,7 +501,6 @@ private extension IconButtonView {
             intent: StepperConstants.IconButton.intent,
             variant: StepperConstants.IconButton.variant,
             size: StepperConstants.IconButton.size,
-            shape: StepperConstants.IconButton.shape,
             action: action
         )
     }

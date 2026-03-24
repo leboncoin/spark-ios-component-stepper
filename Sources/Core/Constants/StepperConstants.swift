@@ -17,6 +17,5 @@ enum StepperConstants {
         static let intent: ButtonIntent = .support
         static let variant: ButtonVariant = .outlined
         static let size: ButtonSize = .medium
-        static let shape: ButtonShape = .rounded // TODO: Remove
     }
 }
